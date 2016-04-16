@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>eNotify</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="css/material.indigo-blue.min.css" />
+        <script type="text/javascript" src="js/material.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/custom.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#submit').click(function(event) {
+                    console.log("Signing Up");
+                    var username = $('#username').val();
+                    var password = $('#password').val();
+                    var email = $('#email').val();
+                    var first_name = $('#first_name').val();
+                    var last_name = $('last_name').val();
+                    var category = $('input:radio[name=category]:checked').val();
+                    $.post(
+                        "http://localhost:3000/signup",
+                        {
+                            "username": username,
+                            "password": password,
+                            "user_type": category,
+                            "email": email,
+                            "first_name": first_name,
+                            "last_name": last_name
+                        },
+                        function(data) {
+                            document.write(data);
+                        }
+                    );
+                });
+            });
+        </script>
+    </head>
+	<body style="background:#1e88e5">
+		<center>
+            <div class="container">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top: 100px">
+                    <div class="mdl-card__title">
+                        eNotify Login
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <form class="form-control">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="username">
+                                <label class="mdl-textfield__label" id="uid_label" for="password">Username</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="password" id="password">
+                                <label class="mdl-textfield__label" for="password">Password</label>
+                            </div>
+                            <a style="float: left; color: #1e88e5" id="register" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Sign Up</a>
+                            <input type="button" id="submit" style="background: #1e88e5; float: right; border-radius:5px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Login"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </center>
+	</body>
+</html>
