@@ -7,11 +7,8 @@ var passport = require('passport');
 var router = express.Router();
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
-// Connect to DB
 mongoose.connect(dbConfig.url);
-
 var app = express();
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 console.log(path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);

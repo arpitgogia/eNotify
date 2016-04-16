@@ -10,23 +10,15 @@
         <script type="text/javascript" src="js/custom.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#submit').click(function(event) {
+                $('#login').click(function(event) {
                     console.log("Signing Up");
                     var username = $('#username').val();
                     var password = $('#password').val();
-                    var email = $('#email').val();
-                    var first_name = $('#first_name').val();
-                    var last_name = $('last_name').val();
-                    var category = $('input:radio[name=category]:checked').val();
                     $.post(
-                        "http://localhost:3000/signup",
+                        "http://localhost:3000/login",
                         {
                             "username": username,
                             "password": password,
-                            "user_type": category,
-                            "email": email,
-                            "first_name": first_name,
-                            "last_name": last_name
                         },
                         function(data) {
                             document.write(data);
@@ -54,7 +46,7 @@
                                 <label class="mdl-textfield__label" for="password">Password</label>
                             </div>
                             <a style="float: left; color: #1e88e5" id="register" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Sign Up</a>
-                            <input type="button" id="submit" style="background: #1e88e5; float: right; border-radius:5px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Login"/>
+                            <input type="button" id="login" style="background: #1e88e5; float: right; border-radius:5px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Login"/>
                         </form>
                     </div>
                 </div>
