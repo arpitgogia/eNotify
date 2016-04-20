@@ -21,13 +21,13 @@
         <link rel="stylesheet" href="css/styles.css">
         <style>
             #view-source {
-            position: fixed;
-            display: block;
-            right: 0;
-            bottom: 0;
-            margin-right: 40px;
-            margin-bottom: 40px;
-            z-index: 900;
+                position: fixed;
+                display: block;
+                right: 0;
+                bottom: 0;
+                margin-right: 40px;
+                margin-bottom: 40px;
+                z-index: 900;
             }
         </style>
         <script type="text/javascript" src="js/material.min.js"></script>
@@ -40,9 +40,9 @@
                 <a href="#new-notice-panel" style="color: white;" class="mdl-tabs__tab is-active">NEW NOTICE</a>
                 <a href="#student" style="color: white;" class="mdl-tabs__tab">STUDENT DIRECTORY</a>
             </div>
-            <div class="mdl-tabs__panel is-active" id="new-notice-panel">
+            <div style="margin-top: 100px;" class="mdl-tabs__panel is-active" id="new-notice-panel">
                 <center>
-                    <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top: 100px">
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
                             NEW NOTICE
                         </div>
@@ -59,7 +59,31 @@
                 </center>
             </div>
             <div class="mdl-tabs__panel" id="student">
-                <center>Student Directory Panel</center>
+                <center>
+                    <div style="width: 600px; margin-top: 100px;" class="demo-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            STUDENT DIRECTORY
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                                <thead>
+                                    <tr>
+                                        <th class="mdl-data-table__cell--non-numeric">Student Name</th>
+                                        <th>Roll. No.</th>
+                                        <th>Email Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="mdl-data-table__cell--non-numeric">Arpit Gogia</td>
+                                        <td>92134780123</td>
+                                        <td>asdzxc@gmail.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </center>
             </div>
         </div>
     </body>
