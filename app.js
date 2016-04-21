@@ -7,6 +7,7 @@ var passport = require('passport');
 var router = express.Router();
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
+var MongoClient = require('mongodb').MongoClient;
 mongoose.connect(dbConfig.url);
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -63,6 +64,29 @@ app.get('/home', isAuthenticated, function (req, res) {
 app.get('/signout', function (req, res) {
     req.logout();
     res.redirect('/');
+});
+app.get('/get_users', function(req, res) {
+    //mongodb://localhost/Passport
+    var strin = "", count = 0;
+    var findUsers = function (db, callback) {
+        var cursor = db.collection('users').find();
+        cursor.each(function(err, doc) {
+            if(doc != null) {
+                var temp = new Object();
+                temp.username = doc.username;
+                strin += JSON.stringify(temp);
+            }
+            else
+                callback();
+        });
+    };
+    MongoClient.connect('mongodb://localhost/passport', function(err, db) {
+        findUsers(db, function() {
+            db.close();
+            // res.setHeader('Content-Type', 'application/json');
+            res.json(strin);
+        });
+    });
 });
 //<!--Routes-->
 /// catch 404 and forward to error handler
