@@ -41,6 +41,11 @@ var isAuthenticated = function (req, res, next) {
         return next();
     res.redirect('/');
 }
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 ////////////////Routes
 app.get('/register', function (req, res) {
     res.render('register.html');
@@ -66,15 +71,18 @@ app.get('/signout', function (req, res) {
     res.redirect('/');
 });
 app.get('/get_users', function(req, res) {
-    //mongodb://localhost/Passport
-    var strin = "", count = 0;
+    var userlist = {
+            users: []
+        };
     var findUsers = function (db, callback) {
         var cursor = db.collection('users').find();
         cursor.each(function(err, doc) {
             if(doc != null) {
-                var temp = new Object();
-                temp.username = doc.username;
-                strin += JSON.stringify(temp);
+                userlist.users.push({
+                    "username": doc.username,
+                    "first_name": doc.first_name,
+                    "email": doc.email
+                });
             }
             else
                 callback();
@@ -83,8 +91,7 @@ app.get('/get_users', function(req, res) {
     MongoClient.connect('mongodb://localhost/passport', function(err, db) {
         findUsers(db, function() {
             db.close();
-            // res.setHeader('Content-Type', 'application/json');
-            res.json(strin);
+            res.json(userlist);
         });
     });
 });
